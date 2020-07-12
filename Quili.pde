@@ -3,11 +3,21 @@ public class Quili {
     PVector pos;
     int     size;
     color   c;
+    color   target;
 
     public Quili (PVector pos, int size, color initial_color) {
         this.pos = pos;
         this.size = size;
         this.c = initial_color;
+        this.target = getTargetColor(this.c);
+    }
+
+    private color getTargetColor(color c) {
+        int r = (c >> 16) & 0xFF;
+        int g = (c >> 8) & 0xFF;
+        int b = c & 0xFF;
+
+        return color(255 - r, 255 - g, 255 -b);
     }
 
     public void display () {
@@ -17,14 +27,14 @@ public class Quili {
     }
 
     public void update (ArrayList<Quili> neighbours) {
-        if (c != TARGET_COLOR) {
+        if (c != this.target) {
             int r = (c >> 16) & 0xFF;
             int g = (c >> 8) & 0xFF;
             int b = c & 0xFF;
 
-            int ir = (TARGET_COLOR >> 16) & 0xFF;
-            int ig = (TARGET_COLOR >> 8) & 0xFF;
-            int ib = TARGET_COLOR & 0xFF;
+            int ir = (this.target >> 16) & 0xFF;
+            int ig = (this.target >> 8) & 0xFF;
+            int ib = this.target & 0xFF;
 
             int new_r = r;
             int new_g = g;

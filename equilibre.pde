@@ -1,6 +1,5 @@
 color TARGET_COLOR = color(125);
 int N_QUILIS = 250000;
-// int N_QUILIS = 100;
 Quili[] quilis = new Quili[N_QUILIS];
 
 int quili_size;
@@ -8,18 +7,18 @@ int n_quilis;
 
 void setup() {
     size(1000, 1000);
-	PImage img = loadImage("van-gogh.jpg");
-	// PImage img = loadImage("hokusai.jpg");
+	// PImage img = loadImage("van-gogh.jpg");
+	PImage img = loadImage("hokusai.jpg");
     n_quilis = int(sqrt(N_QUILIS));
     quili_size = 1000 / n_quilis;
     int i = 0;
     for (int y = 0; y < n_quilis; ++y) {
         for (int x = 0; x < n_quilis; ++x) {
-            // color c = color(int(noise(i + 2) * 255), int(noise(i + 3) * 255), int(noise(i + 4) * 255));
-            // color c = color(int(random(255)), int(random(255)), int(random(255)));
+            // color c = color(int(noise(x, y) * 255), int(noise(x, y) * 255), int(noise(x, y) * 255));
+            color c = color(int(random(255)), int(random(255)), int(random(255)));
 		    PImage newImg = img.get(y * quili_size, x * quili_size, quili_size, quili_size);
             PVector pos = new PVector(y * quili_size, x * quili_size);
-			color c = extractColorFromImage(newImg);
+			// color c = extractColorFromImage(newImg);
             quilis[i] = new Quili(pos, quili_size, c);
             i++;
         }
